@@ -1339,6 +1339,7 @@ tú iluminas mi universo cada día. ✨</textarea>
     const soundToggleBtn = document.getElementById('soundToggleBtn');
     const soundEqBars = document.getElementById('soundEqBars');
     const openEditModalBtn = document.getElementById('openEditModalBtn');
+    let dedicationRevealTimer = null;
 
     // 1. ABRIR REGALO GALÁCTICO
     startExperienceBtn.addEventListener('click', (event) => {
@@ -1364,7 +1365,8 @@ tú iluminas mi universo cada día. ✨</textarea>
       openEditModalBtn.classList.remove('hidden');
 
       // Mostrar dedicatoria
-      setTimeout(() => {
+      dedicationRevealTimer = setTimeout(() => {
+        if (APP_STATE.view !== 'GARDEN') return;
         dedicationSection.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-8');
         dedicationSection.classList.add('opacity-100', 'translate-y-0');
       }, 300);
@@ -1379,6 +1381,10 @@ tú iluminas mi universo cada día. ✨</textarea>
     // 2. VER GALAXIA DE RECUERDOS
     viewGalaxyBtn.addEventListener('click', () => {
       APP_STATE.view = 'GALAXY';
+      if (dedicationRevealTimer !== null) {
+        clearTimeout(dedicationRevealTimer);
+        dedicationRevealTimer = null;
+      }
 
       // Suavizar fondo del jardín
       canvas.style.filter = 'blur(10px) brightness(0.6)';
