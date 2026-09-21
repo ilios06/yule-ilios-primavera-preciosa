@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galaxia de Flores Amarillas & Recuerdos 🌻✨</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fuentes Elegantes de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-amarillo: #ffeb3b;
+      --color-oro: #fbc02d;
+      --oro-claro: #fff9c4;
+      --glow-oro: rgba(251, 192, 45, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Outfit', sans-serif;
+      background-color: #05070d;
+      color: #ffffff;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Permitir selección natural en campos de texto de los modales */
+    input, textarea {
+      user-select: text !important;
+      -webkit-user-select: text !important;
+    }
+
+    :focus-visible {
+      outline: 3px solid #fde047;
+      outline-offset: 3px;
+    }
+
+    .image-error::before {
+      content: 'Imagen no disponible';
+      color: #fde68a;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    .font-romantic { font-family: 'Great Vibes', cursive; }
+    .font-serif-title { font-family: 'Playfair Display', serif; }
+    .font-handwritten { font-family: 'Caveat', cursive; }
+
+    /* STREAMING_CHUNK:Styling cosmic background layers, nebulas, and shooting stars... -->
+    .space-background {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 100%, #172238 0%, #0c111e 50%, #05070d 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .nebula-glow {
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(circle 500px at 80% 20%, rgba(245, 158, 11, 0.12), transparent 70%),
+        radial-gradient(circle 600px at 15% 85%, rgba(234, 179, 8, 0.1), transparent 75%),
+        radial-gradient(circle 450px at 50% 50%, rgba(253, 224, 71, 0.05), transparent 60%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .stars-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .estrella {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: twinkle var(--dur, 3s) ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.2; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.35); box-shadow: 0 0 8px rgba(255, 235, 59, 0.9); }
+      100% { opacity: 0.25; transform: scale(0.85); }
+    }
+
+    .shooting-star {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, #fff, #fde047, transparent);
+      border-radius: 999px;
+      filter: drop-shadow(0 0 6px #ffe082);
+      animation: shoot 8s linear infinite;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    @keyframes shoot {
+      0% { transform: translateX(0) translateY(0) rotate(-35deg); opacity: 1; width: 0px; }
+      8% { width: 160px; }
+      16% { transform: translateX(-420px) translateY(294px) rotate(-35deg); opacity: 0; width: 0px; }
+      100% { opacity: 0; }
+    }
+
+    /* STREAMING_CHUNK:Styling interactive glowing buttons and glass panels... -->
+    .btn-golden-glow {
+      background: linear-gradient(135deg, #fff176 0%, #fbc02d 50%, #f57f17 100%);
+      color: #211300;
+      box-shadow: 
+        0 0 25px rgba(251, 192, 45, 0.6),
+        0 4px 15px rgba(0, 0, 0, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+
+    .btn-golden-glow:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 
+        0 0 35px rgba(251, 192, 45, 0.85),
+        0 6px 20px rgba(0, 0, 0, 0.5),
+        inset 0 1px 3px rgba(255, 255, 255, 1);
+    }
+
+    .btn-golden-glow:active {
+      transform: translateY(1px) scale(0.97);
+    }
+
+    .glass-panel {
+      background: rgba(13, 19, 33, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(253, 224, 71, 0.35);
+      box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.6),
+        0 0 20px rgba(251, 192, 45, 0.15);
+    }
+
+    .glow-gold-text {
+      color: #fff9c4;
+      text-shadow: 
+        0 0 12px rgba(251, 192, 45, 0.8),
+        0 0 26px rgba(245, 158, 11, 0.6);
+      animation: pulse-title 2.5s infinite alternate ease-in-out;
+    }
+
+    @keyframes pulse-title {
+      0% { text-shadow: 0 0 10px rgba(251, 192, 45, 0.7); }
+      100% { text-shadow: 0 0 24px rgba(255, 235, 59, 0.95), 0 0 40px rgba(251, 192, 45, 0.8); }
+    }
+
+    /* STREAMING_CHUNK:Styling 3D Galaxy carousel, polaroids, and animations... -->
+    .galaxy-3d-scene {
+      perspective: 1100px;
+      perspective-origin: 50% 48%;
+      transform-style: preserve-3d;
+      width: 100%;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    #memoryGalaxySection {
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    .carousel-ring {
+      position: relative;
+      width: 250px;
+      height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .polaroid-card {
+      position: absolute;
+      width: 240px;
+      height: 330px;
+      left: 50%;
+      top: 50%;
+      background: linear-gradient(150deg, #ffffff 0%, #fffdf8 80%, #fef3c7 100%);
+      border-radius: 12px;
+      padding: 10px 10px 16px 10px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(253, 224, 71, 0.3);
+      color: #292524;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+      border: 1px solid rgba(253, 224, 71, 0.5);
+      font: inherit;
+      text-align: left;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .memory-card-static {
+      position: relative;
+      left: auto;
+      top: auto;
+      transform: none !important;
+    }
+
+    .polaroid-card:hover {
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7), 0 0 35px rgba(250, 204, 21, 0.8);
+      border-color: #facc15;
+    }
+
+    .polaroid-card.active-card {
+      border: 2px solid #eab308;
+      box-shadow: 0 0 35px rgba(250, 204, 21, 0.9), 0 15px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    .tape-accent {
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      width: 65px;
+      height: 18px;
+      background: rgba(253, 224, 71, 0.45);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+      z-index: 10;
+    }
+
+    /* Equalizer de audio */
+    .eq-bar {
+      width: 3px;
+      background: #facc15;
+      border-radius: 999px;
+      animation: eqBounce 0.9s ease-in-out infinite alternate;
+    }
+    .eq-bar:nth-child(1) { height: 6px; animation-delay: 0.1s; }
+    .eq-bar:nth-child(2) { height: 14px; animation-delay: 0.3s; }
+    .eq-bar:nth-child(3) { height: 9px; animation-delay: 0.5s; }
+    .eq-bar:nth-child(4) { height: 16px; animation-delay: 0.2s; }
+
+    @keyframes eqBounce {
+      0% { height: 4px; }
+      100% { height: 16px; }
+    }
+
+    .paused .eq-bar {
+      animation: none !important;
+      height: 4px !important;
+    }
+
+    @media (max-height: 700px) {
+      #memoryGalaxySection {
+        justify-content: flex-start;
+        gap: 0.6rem;
+        padding-top: 4.5rem;
+        padding-bottom: 1rem;
+      }
+
+      #memoryGalaxySection .galaxy-3d-scene {
+        height: 235px;
+        min-height: 235px;
+        margin: 0;
+      }
+
+      #memoryGalaxySection > .relative {
+        margin: 0;
+        flex: 0 0 235px;
+      }
+
+      #memoryGalaxySection .carousel-ring {
+        width: 205px;
+        height: 235px;
+      }
+
+      #memoryGalaxySection .polaroid-card {
+        width: 205px;
+        height: 225px;
+        padding: 8px 8px 12px;
+      }
+
+      #memoryGalaxySection .polaroid-card .h-44 {
+        height: 110px;
+      }
+
+      #memoryGalaxySection .polaroid-card .text-lg {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="relative w-full h-full overflow-hidden bg-black">
+
+  <!-- Capa 1: Fondo espacial y nebulosas fijas -->
+  <div class="space-background"></div>
+  <div class="nebula-glow"></div>
+  <div class="stars-layer" id="starsBox"></div>
+
+  <!-- Estrellas fugaces animadas -->
+  <div class="shooting-star" style="top: 15%; right: 12%; animation-delay: 2s;"></div>
+  <div class="shooting-star" style="top: 40%; right: 30%; animation-delay: 6s;"></div>
+  <div class="shooting-star" style="top: 68%; left: 18%; animation-delay: 10s;"></div>
+
+  <!-- Capa 2: Canvas de Flores Amarillas y Polen Flotante -->
+  <canvas id="garden-canvas" class="fixed inset-0 w-full h-full z-10 cursor-pointer transition-all duration-700"></canvas>
+
+  <!-- Barra de navegación superior fija -->
+  <header class="fixed top-3 inset-x-3 sm:top-4 sm:inset-x-4 z-40 flex items-center justify-between pointer-events-auto">
+    <!-- Izquierda: Botón para volver al jardín desde la galaxia -->
+    <div class="flex items-center gap-2">
+      <button id="backToGardenBtn" 
+              class="hidden px-4 py-2.5 rounded-full glass-panel text-xs sm:text-sm font-bold text-yellow-300 hover:text-white border border-yellow-400/40 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 shadow-xl cursor-pointer">
+        <span class="text-base">🌻</span>
+        <span>Volver al Jardín</span>
+      </button>
+
+      <span id="galaxyBadge" class="hidden px-3 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-400/25 text-yellow-200 text-xs font-semibold tracking-wider">
+        🌌 Galaxia Activa
+      </span>
+    </div>
+
+    <!-- Derecha: Controles de Audio y Dedicatoria -->
+    <div class="flex items-center gap-2">
+      <!-- Botón de Audio con ecualizador -->
+      <button id="soundToggleBtn" 
+              title="Activar / Silenciar Melodía"
+              aria-label="Activar o silenciar la música"
+              aria-pressed="false"
+              class="hidden px-3.5 py-2 rounded-full glass-panel text-xs font-semibold text-yellow-300 hover:text-white border border-yellow-400/40 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 shadow-xl cursor-pointer">
+        <div id="soundEqBars" class="flex items-center gap-0.5 h-4">
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+        </div>
+        <span id="soundLabel" class="hidden sm:inline">Melodía</span>
+      </button>
+
+      <!-- Botón Editar Dedicatoria -->
+      <button id="openEditModalBtn" 
+              title="Personalizar Dedicatoria"
+              class="hidden px-3.5 py-2 rounded-full glass-panel text-xs font-semibold text-amber-200 hover:text-white border border-yellow-400/40 hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 shadow-xl cursor-pointer">
+        <span>✏️</span>
+        <span class="hidden sm:inline">Personalizar</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- VISTA 1: PANTALLA DE APERTURA DEL REGALO -->
+  <section id="welcomeScreen" class="fixed inset-0 z-30 flex flex-col items-center justify-center p-4 text-center transition-all duration-700 pointer-events-auto">
+    <div class="mb-4 text-6xl sm:text-7xl animate-bounce filter drop-shadow-[0_0_30px_rgba(251,192,45,0.9)]">
+      🌻
+    </div>
+    
+    <p class="text-xs sm:text-sm uppercase tracking-[0.35em] text-yellow-300 font-bold mb-3">
+      Un obsequio cósmico especial
+    </p>
+
+    <h2 class="font-romantic text-4xl sm:text-6xl text-yellow-200 mb-6 drop-shadow-[0_0_15px_rgba(255,235,59,0.7)]">
+      Para iluminar tu universo
+    </h2>
+
+    <button id="startExperienceBtn" 
+            class="btn-golden-glow px-8 sm:px-12 py-4 sm:py-5 rounded-full font-black text-lg sm:text-xl tracking-wide flex items-center gap-3 cursor-pointer shadow-2xl">
+      <span class="text-2xl animate-spin" style="animation-duration: 8s;">🌻</span>
+      <span>Abrir Regalo Galáctico</span>
+      <span class="text-2xl">✨</span>
+    </button>
+
+    <p class="mt-4 text-xs text-yellow-100/70 tracking-wider">
+      Haz clic para despertar la melodía celestial y el jardín estelar
+    </p>
+  </section>
+
+  <!-- VISTA 2: TARJETA DE DEDICATORIA & ACCIONES DEL JARDÍN -->
+  <section id="dedicationSection" class="fixed top-14 sm:top-16 inset-x-0 z-30 max-w-xl mx-auto px-4 opacity-0 pointer-events-none -translate-y-8 transition-all duration-700">
+    <div class="glass-panel rounded-3xl p-5 sm:p-7 text-center relative overflow-hidden border border-yellow-400/40 pointer-events-auto">
+      
+      <!-- Destellos decorativos internos -->
+      <div class="absolute -top-12 -left-12 w-36 h-36 bg-yellow-400/15 rounded-full blur-2xl pointer-events-none"></div>
+      <div class="absolute -bottom-12 -right-12 w-36 h-36 bg-amber-500/15 rounded-full blur-2xl pointer-events-none"></div>
+
+      <!-- Destinatario -->
+      <p id="cardRecipient" class="text-xs sm:text-sm font-bold tracking-widest uppercase text-amber-300 mb-1">
+        ✦ Para: Yule &lt;3 ✦
+      </p>
+
+      <p id="cardOccasion" class="text-[11px] sm:text-xs text-yellow-200/80 tracking-[0.18em] uppercase mb-2">
+        Primer día de primavera · 21/09/2026
+      </p>
+
+      <!-- Título principal -->
+      <h1 id="cardTitle" class="font-romantic text-3xl sm:text-5xl glow-gold-text font-bold my-1 leading-tight">
+        Casualidad de conocerte con la oportunidad de quererte.
+      </h1>
+
+      <!-- Divisor elegante -->
+      <div class="w-28 h-0.5 mx-auto bg-gradient-to-r from-transparent via-yellow-400 to-transparent my-2.5"></div>
+
+      <!-- Poema -->
+      <p id="cardPoem" class="text-yellow-100 text-sm sm:text-base font-light leading-relaxed drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">
+        Cada momento compartido, cada mirada evitada y cada descuido para apreciarte.<br />
+        Miles de días por vivir juntos y miles de cosas por hacer.<br />
+        El tiempo puede ser el medio para lograr lo que nos hace feliz: compartir.
+      </p>
+
+      <p id="cardSignature" class="mt-4 text-yellow-200/90 text-sm sm:text-base font-handwritten leading-tight">
+        Con cariño, <strong class="font-semibold">Ilios</strong><br />
+        <span class="text-yellow-300">Cada momento vivido</span>
+      </p>
+
+      <!-- BOTONES DE ACCIÓN: VER GALAXIA & FLORECER -->
+      <div class="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <button id="viewGalaxyBtn" 
+                class="w-full sm:w-auto px-7 py-3.5 rounded-full btn-golden-glow font-black text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer">
+          <span class="text-lg">🌌</span>
+          <span>Ver galaxia de recuerdos</span>
+          <span class="text-lg">✨</span>
+        </button>
+
+        <button id="restartGardenBtn" 
+                title="Brotar flores nuevamente"
+                class="w-full sm:w-auto px-5 py-3 rounded-full glass-panel hover:bg-yellow-400/20 text-yellow-200 text-xs sm:text-sm font-bold border border-yellow-400/40 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-all cursor-pointer">
+          <span>🌱</span>
+          <span>Florecer de nuevo</span>
+        </button>
+      </div>
+
+      <p class="mt-3 text-[11px] text-yellow-200/70">
+        💡 Toca cualquier parte de la pantalla para sembrar más flores y chispas de luz
+      </p>
+    </div>
+  </section>
+
+  <!-- VISTA 3: GALAXIA DE RECUERDOS (ORBITA 3D & CONTROLES DIRECTOS) -->
+  <section id="memoryGalaxySection" class="fixed inset-0 z-30 opacity-0 pointer-events-none transition-opacity duration-700 flex flex-col justify-between py-14 sm:py-16 px-4">
+    
+    <!-- Cabecera de la Constelación -->
+    <div class="text-center z-10 pointer-events-auto">
+      <p class="text-xs uppercase tracking-[0.3em] text-yellow-300/90 font-bold mb-1">
+        ✦ Constelación de Momentos Únicos ✦
+      </p>
+      <h2 class="font-serif-title text-2xl sm:text-4xl text-yellow-100 font-bold tracking-wide drop-shadow-[0_0_18px_rgba(251,192,45,0.7)]">
+        Nuestra Galaxia de Recuerdos
+      </h2>
+      <p class="text-xs text-yellow-200/80 mt-1">
+        Explora con las flechas, arrastra o toca una tarjeta para verla en detalle
+      </p>
+    </div>
+
+    <!-- Escenario del Carrusel 3D -->
+    <div class="relative w-full flex items-center justify-center my-auto pointer-events-auto">
+      
+      <!-- Botón Flecha Izquierda (Anterior) -->
+      <button id="prevMemoryBtn" 
+              aria-label="Ver recuerdo anterior"
+              class="absolute left-2 sm:left-8 z-20 w-11 h-11 sm:w-13 sm:h-13 rounded-full glass-panel text-yellow-300 hover:text-white border border-yellow-400/50 flex items-center justify-center text-xl font-black shadow-2xl hover:scale-110 active:scale-90 transition-all cursor-pointer"
+              title="Recuerdo Anterior">
+        ◀
+      </button>
+
+      <!-- Escenario 3D y Anillo de Recuerdos -->
+      <div class="galaxy-3d-scene" id="galaxyScene">
+        <div class="carousel-ring" id="carouselRing">
+          <!-- Tarjetas renderizadas dinámicamente -->
+        </div>
+      </div>
+
+      <!-- Botón Flecha Derecha (Siguiente) -->
+      <button id="nextMemoryBtn" 
+              aria-label="Ver siguiente recuerdo"
+              class="absolute right-2 sm:right-8 z-20 w-11 h-11 sm:w-13 sm:h-13 rounded-full glass-panel text-yellow-300 hover:text-white border border-yellow-400/50 flex items-center justify-center text-xl font-black shadow-2xl hover:scale-110 active:scale-90 transition-all cursor-pointer"
+              title="Siguiente Recuerdo">
+        ▶
+      </button>
+    </div>
+
+    <!-- Barra Inferior: Indicadores de puntos (Dots) y Botones de Acción -->
+    <div class="z-10 pointer-events-auto flex flex-col items-center gap-3">
+      
+      <!-- Indicadores de puntos (Dots directos) -->
+      <div id="memoryDotsContainer" class="flex items-center gap-2 bg-black/40 px-4 py-1.5 rounded-full border border-yellow-400/20 backdrop-blur-sm">
+        <!-- Renderizado dinámicamente -->
+      </div>
+
+      <!-- Controles de la Galaxia -->
+      <div class="flex items-center gap-3">
+        <button id="autoRotateToggleBtn" 
+                class="px-4 py-2.5 rounded-full glass-panel text-yellow-200 text-xs sm:text-sm font-semibold border border-yellow-400/40 flex items-center gap-1.5 hover:text-white hover:scale-105 active:scale-95 transition-all cursor-pointer">
+          <span id="autoRotateIcon">⏸️</span>
+          <span id="autoRotateText">Pausar Giro</span>
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- MODAL 1: DETALLE DEL RECUERDO AMPLIADO -->
+  <div id="memoryDetailModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md p-4 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+    <div class="glass-panel rounded-3xl p-5 sm:p-7 max-w-lg w-full border border-yellow-400/50 text-center shadow-2xl relative flex flex-col items-center">
+      
+      <!-- Botón de Cerrar Modal -->
+      <button id="closeDetailModalBtn" aria-label="Cerrar detalle del recuerdo" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-yellow-400/20 text-yellow-200 hover:bg-yellow-400/40 hover:text-white flex items-center justify-center text-base font-bold transition-all cursor-pointer">
+        ✕
+      </button>
+
+      <!-- Badge de fecha -->
+      <span id="modalMemoryDate" class="text-xs font-bold uppercase tracking-widest text-amber-300 bg-amber-400/15 px-3.5 py-1 rounded-full border border-amber-400/35 mb-3">
+        Septiembre
+      </span>
+
+      <!-- Imagen -->
+      <div class="w-full h-60 sm:h-72 rounded-2xl overflow-hidden mb-3.5 border border-yellow-400/30 shadow-inner bg-slate-950 flex items-center justify-center">
+      <img id="modalMemoryImg" src="" alt="Recuerdo" width="640" height="480" class="w-full h-full object-cover" />
+      </div>
+
+      <!-- Título -->
+      <h3 id="modalMemoryTitle" class="font-serif-title text-xl sm:text-2xl font-bold text-yellow-100 mb-2">
+        Título del Recuerdo
+      </h3>
+
+      <!-- Frase emotiva -->
+      <p id="modalMemoryNote" class="text-yellow-100/90 text-sm sm:text-base italic font-light px-2 mb-4">
+        "Nota del momento especial..."
+      </p>
+
+      <!-- Barra de acciones -->
+      <div class="flex items-center justify-end w-full pt-3 border-t border-yellow-400/25">
+        <button id="closeDetailOkBtn" class="btn-golden-glow px-6 py-2 rounded-xl text-xs font-bold shadow-md cursor-pointer">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: PERSONALIZAR DEDICATORIA -->
+  <div id="editDedicationModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md p-4 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+    <div class="glass-panel rounded-3xl p-5 sm:p-7 max-w-md w-full border border-yellow-400/40 text-left shadow-2xl relative">
+      
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold text-yellow-300 flex items-center gap-2">
+          <span>🌻</span> Personalizar Dedicatoria
+        </h3>
+        <button id="closeEditModalCross" aria-label="Cerrar personalización de la dedicatoria" class="text-yellow-200/70 hover:text-white text-lg font-bold cursor-pointer">✕</button>
+      </div>
+
+      <div class="space-y-3 text-xs sm:text-sm">
+        <div>
+          <label class="block text-yellow-200/90 mb-1 font-semibold">Destinatario / Nombre:</label>
+          <input type="text" id="inputRecipient" maxlength="45" value="Mi Persona Favorita 💛"
+                 class="w-full px-3.5 py-2 rounded-xl bg-slate-900/90 border border-yellow-500/40 text-yellow-100 focus:outline-none focus:border-yellow-400 transition-colors" />
+        </div>
+
+        <div>
+          <label class="block text-yellow-200/90 mb-1 font-semibold">Título Principal:</label>
+          <input type="text" id="inputTitle" maxlength="60" value="¡Feliz día de las flores amarillas!"
+                 class="w-full px-3.5 py-2 rounded-xl bg-slate-900/90 border border-yellow-500/40 text-yellow-100 focus:outline-none focus:border-yellow-400 transition-colors" />
+        </div>
+
+        <div>
+          <label class="block text-yellow-200/90 mb-1 font-semibold">Mensaje o Poema:</label>
+          <textarea id="inputPoem" rows="3" maxlength="180"
+                    class="w-full px-3.5 py-2 rounded-xl bg-slate-900/90 border border-yellow-500/40 text-yellow-100 focus:outline-none focus:border-yellow-400 resize-none transition-colors">Amarillas como el sol radiante,
+tú iluminas mi universo cada día. ✨</textarea>
+        </div>
+      </div>
+
+      <div class="mt-5 flex justify-end gap-2.5">
+        <button id="closeEditModalBtn" class="px-4 py-2 rounded-xl text-xs font-semibold text-yellow-200/70 hover:text-white transition-colors cursor-pointer">
+          Cancelar
+        </button>
+        <button id="saveDedicationBtn" class="btn-golden-glow px-5 py-2 rounded-xl text-xs font-bold shadow-md cursor-pointer">
+          Guardar Cambios
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="backgroundMusic" preload="metadata" loop src="assets/audio/elgar-salut-d-amour.mp3"></audio>
+
+  <script>
+    /* ==========================================================================
+       1. ESTADO GLOBAL DE LA APLICACIÓN
+       ========================================================================== */
+    const APP_STATE = {
+      view: 'WELCOME', // 'WELCOME', 'GARDEN', 'GALAXY'
+      isAudioPlaying: false,
+      isAutoRotating: true,
+      currentIndex: 0,
+      currentModalIndex: null
+    };
+
+    // Recuerdos permanentes de la galaxia de Yule e Ilios.
+    const MEMORIES_DATA = [
+      {
+        id: 1,
+        title: "Felices, juntos",
+        date: "Un momento feliz",
+        image: "assets/recuerdos/felices-juntos.jpeg",
+        note: "Un instante compartido para guardar cerca del corazón."
+      },
+      {
+        id: 2,
+        title: "Con vergüenza, pero felices",
+        date: "Una sonrisa compartida",
+        image: "assets/recuerdos/con-verguenza-pero-felices.jpeg",
+        note: "Entre miradas tímidas también florecen los momentos felices."
+      },
+      {
+        id: 3,
+        title: "Camino a la despedida",
+        date: "De la mano",
+        image: "assets/recuerdos/camino-a-la-despedida.jpeg",
+        note: "Cada despedida se vuelve más llevadera cuando caminamos juntos."
+      },
+      {
+        id: 4,
+        title: "Marcado labial",
+        date: "Un beso para recordar",
+        image: "assets/recuerdos/marcado-labial.jpeg",
+        note: "Un pequeño gesto, una gran memoria y toda nuestra complicidad."
+      }
+    ];
+
+    /* STREAMING_CHUNK:Generating twinkling stars across the cosmic background... -->
+    /* ==========================================================================
+       2. GENERADOR DE ESTRELLAS TITILANTES
+       ========================================================================== */
+    const starsBox = document.getElementById('starsBox');
+    function generateStars() {
+      const fragment = document.createDocumentFragment();
+      const count = 130;
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        star.className = 'estrella';
+        const size = Math.random() * 2.5 + 0.8;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.left = `${Math.random() * 100}vw`;
+        star.style.top = `${Math.random() * 100}vh`;
+
+        const colors = ['#ffffff', '#fffde7', '#fff59d', '#ffd54f'];
+        star.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        star.style.setProperty('--dur', `${(Math.random() * 3 + 2).toFixed(2)}s`);
+        star.style.animationDelay = `${(Math.random() * 4).toFixed(2)}s`;
+
+        fragment.appendChild(star);
+      }
+      starsBox.appendChild(fragment);
+    }
+    generateStars();
+
+    /* STREAMING_CHUNK:Implementing native Web Audio synthesizer for background melody... -->
+    /* ==========================================================================
+       3. SINTETIZADOR WEB AUDIO API (MELODÍA CELESTIAL DE CAJA MUSICAL)
+       ========================================================================== */
+    class CosmicMusicBox {
+      constructor() {
+        this.ctx = null;
+        this.isPlaying = false;
+        this.timer = null;
+        this.noteIdx = 0;
+
+        // Escala pentatónica mayor en Sol (G Major) nostálgica y brillante
+        this.scale = [
+          392.00, // G4
+          440.00, // A4
+          493.88, // B4
+          587.33, // D5
+          659.25, // E5
+          783.99, // G5
+          880.00, // A5
+          987.77, // B5
+          1174.66 // D6
+        ];
+
+        this.melody = [
+          0, 2, 3, 5,  4, 2, 3, 1,
+          0, 3, 4, 6,  5, 4, 3, 2,
+          1, 3, 5, 7,  6, 5, 4, 3,
+          0, 2, 4, 5,  7, 5, 3, 2
+        ];
+      }
+
+      initContext() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      playNote(freq) {
+        if (!this.ctx || this.ctx.state !== 'running') return;
+        const now = this.ctx.currentTime;
+
+        const osc1 = this.ctx.createOscillator();
+        const osc2 = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(freq, now);
+
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(freq * 2, now);
+
+        // Curva de campana/caja musical
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.05, now + 0.025);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.0);
+
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc1.start(now);
+        osc2.start(now);
+        osc1.stop(now + 2.1);
+        osc2.stop(now + 2.1);
+      }
+
+      start() {
+        this.initContext();
+        if (this.isPlaying) return;
+        this.isPlaying = true;
+        this.timer = setInterval(() => {
+          if (!this.isPlaying) return;
+          const freq = this.scale[this.melody[this.noteIdx % this.melody.length]];
+          this.playNote(freq);
+
+          // Bajo cálido cada 4 notas
+          if (this.noteIdx % 4 === 0) {
+            this.playNote(this.scale[0] / 2);
+          }
+          this.noteIdx++;
+        }, 580);
+      }
+
+      stop() {
+        this.isPlaying = false;
+        if (this.timer) {
+          clearInterval(this.timer);
+          this.timer = null;
+        }
+      }
+
+      toggle() {
+        if (this.isPlaying) {
+          this.stop();
+          return false;
+        } else {
+          this.start();
+          return true;
+        }
+      }
+    }
+
+    const backgroundAudio = document.getElementById('backgroundMusic');
+    backgroundAudio.volume = 0.55;
+
+    const musicBox = {
+      isPlaying: false,
+      async start() {
+        try {
+          await backgroundAudio.play();
+          this.isPlaying = true;
+          return true;
+        } catch (error) {
+          console.warn('No se pudo iniciar la pista musical:', error);
+          this.isPlaying = false;
+          return false;
+        }
+      },
+      async toggle() {
+        if (backgroundAudio.paused) return this.start();
+        backgroundAudio.pause();
+        this.isPlaying = false;
+        return false;
+      }
+    };
+
+    backgroundAudio.addEventListener('play', () => { musicBox.isPlaying = true; });
+    backgroundAudio.addEventListener('pause', () => { musicBox.isPlaying = false; });
+
+    /* STREAMING_CHUNK:Configuring the botanical canvas, sunflowers, leaves, and pollen... -->
+    /* ==========================================================================
+       4. MOTOR DEL LIENZO DE GIRASOLES BOTÁNICOS & POLEN
+       ========================================================================== */
+    const canvas = document.getElementById('garden-canvas');
+    const ctx = canvas.getContext('2d');
+    let canvasW = 0;
+    let canvasH = 0;
+
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      canvasW = window.innerWidth;
+      canvasH = window.innerHeight;
+      canvas.width = canvasW * dpr;
+      canvas.height = canvasH * dpr;
+      ctx.resetTransform?.() || ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+    }
+    resizeCanvas();
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      if (flowersList.length > 0) buildGarden();
+    });
+
+    class SunflowerEntity {
+      constructor(baseX, targetStemHeight, scale = 1, swayOffset = 0, isMini = false, startY = null) {
+        this.baseX = baseX;
+        this.baseY = startY !== null ? startY : canvasH + 15;
+        this.targetStemHeight = isMini ? (Math.random() * 50 + 40) : targetStemHeight;
+        this.currentStemHeight = 0;
+        this.stemGrowthSpeed = isMini ? 3.5 : (Math.random() * 1.5 + 2.2);
+        this.scale = scale;
+        this.swayOffset = swayOffset;
+        this.bloomProgress = 0;
+        this.isMini = isMini;
+        this.isDead = false;
+        this.lifeSpan = isMini ? 300 : Infinity;
+        this.age = 0;
+        this.petalCount = 18;
+        this.curveBias = (Math.random() - 0.5) * 40;
+
+        this.leaves = [
+          { side: -1, progress: 0, attachPercent: 0.36, length: 36 },
+          { side: 1, progress: 0, attachPercent: 0.64, length: 42 }
+        ];
+      }
+
+      update(time) {
+        this.age++;
+
+        // Crecimiento vertical del tallo
+        if (this.currentStemHeight < this.targetStemHeight) {
+          this.currentStemHeight += this.stemGrowthSpeed;
+          if (this.currentStemHeight > this.targetStemHeight) {
+            this.currentStemHeight = this.targetStemHeight;
+          }
+        } else {
+          // Floración progresiva
+          if (this.bloomProgress < 1) {
+            this.bloomProgress = Math.min(1, this.bloomProgress + (this.isMini ? 0.04 : 0.016));
+          }
+        }
+
+        // Crecimiento de hojas laterales
+        this.leaves.forEach(leaf => {
+          if (this.currentStemHeight > this.targetStemHeight * leaf.attachPercent) {
+            if (leaf.progress < 1) leaf.progress += 0.03;
+          }
+        });
+
+        // Balanceo armónico por brisa cósmica
+        const progressRatio = this.currentStemHeight / this.targetStemHeight;
+        this.sway = Math.sin(time * 0.0018 + this.swayOffset) * (this.isMini ? 8 : 20) * progressRatio;
+
+        if (this.isMini && this.age > this.lifeSpan) {
+          this.isDead = true;
+        }
+      }
+
+      draw(context) {
+        const topX = this.baseX + this.sway + (this.curveBias * (this.currentStemHeight / this.targetStemHeight));
+        const topY = this.baseY - this.currentStemHeight;
+        const ctrlX = this.baseX + this.sway * 0.35 + (this.curveBias * 0.4);
+        const ctrlY = this.baseY - this.currentStemHeight * 0.5;
+
+        // Tallo
+        context.save();
+        context.beginPath();
+        context.moveTo(this.baseX, this.baseY);
+        context.quadraticCurveTo(ctrlX, ctrlY, topX, topY);
+        context.lineWidth = Math.max(2, (this.isMini ? 3 : 5.8) * this.scale);
+        context.strokeStyle = '#275222';
+        context.lineCap = 'round';
+        context.stroke();
+
+        // Hojas
+        this.leaves.forEach(leaf => {
+          if (leaf.progress <= 0) return;
+          const t = leaf.attachPercent;
+          const leafX = (1 - t) * (1 - t) * this.baseX + 2 * (1 - t) * t * ctrlX + t * t * topX;
+          const leafY = (1 - t) * (1 - t) * this.baseY + 2 * (1 - t) * t * ctrlY + t * t * topY;
+
+          context.save();
+          context.translate(leafX, leafY);
+          context.rotate(leaf.side * 0.55 + Math.sin(this.swayOffset) * 0.1);
+          context.scale(leaf.progress * this.scale, leaf.progress * this.scale);
+
+          context.beginPath();
+          context.moveTo(0, 0);
+          context.quadraticCurveTo(leaf.side * (leaf.length * 0.6), -10, leaf.side * leaf.length, -4);
+          context.quadraticCurveTo(leaf.side * (leaf.length * 0.5), 16, 0, 0);
+          context.fillStyle = '#32662c';
+          context.fill();
+          context.restore();
+        });
+        context.restore();
+
+        // Flor abierta
+        if (this.bloomProgress > 0) {
+          context.save();
+          context.translate(topX, topY);
+
+          let currentScale = this.bloomProgress * this.scale;
+          if (this.isMini && this.age > this.lifeSpan - 40) {
+            currentScale *= (this.lifeSpan - this.age) / 40;
+          }
+          context.scale(currentScale, currentScale);
+
+          const petalLen = this.isMini ? 26 : 50;
+          const petalWid = this.isMini ? 8 : 14;
+
+          // Capa trasera de pétalos (ámbar dorado)
+          for (let i = 0; i < this.petalCount; i++) {
+            const angle = (Math.PI * 2 * i) / this.petalCount;
+            context.save();
+            context.rotate(angle);
+            context.beginPath();
+            context.moveTo(0, 0);
+            context.quadraticCurveTo(petalWid * 0.7, -petalLen * 0.45, 0, -petalLen);
+            context.quadraticCurveTo(-petalWid * 0.7, -petalLen * 0.45, 0, 0);
+            context.fillStyle = '#f59e0b';
+            context.fill();
+            context.restore();
+          }
+
+          // Capa delantera (amarillo luminoso)
+          for (let i = 0; i < this.petalCount; i++) {
+            const angle = (Math.PI * 2 * i) / this.petalCount + (Math.PI / this.petalCount);
+            context.save();
+            context.rotate(angle);
+            context.beginPath();
+            context.moveTo(0, 0);
+            context.quadraticCurveTo(petalWid * 0.65, -petalLen * 0.42, 0, -petalLen * 0.94);
+            context.quadraticCurveTo(-petalWid * 0.65, -petalLen * 0.42, 0, 0);
+            context.fillStyle = '#ffeb3b';
+            context.fill();
+
+            // Pincelada de luz interior
+            context.beginPath();
+            context.moveTo(0, -2);
+            context.lineTo(0, -petalLen * 0.7);
+            context.lineWidth = 1.2;
+            context.strokeStyle = '#fffde7';
+            context.stroke();
+            context.restore();
+          }
+
+          // Disco central con gradiente de profundidad
+          const discRadius = this.isMini ? 9 : 17;
+          const discGrad = context.createRadialGradient(0, 0, 2, 0, 0, discRadius);
+          discGrad.addColorStop(0, '#53290b');
+          discGrad.addColorStop(0.65, '#3b1c05');
+          discGrad.addColorStop(1, '#1e0c01');
+
+          context.beginPath();
+          context.arc(0, 0, discRadius, 0, Math.PI * 2);
+          context.fillStyle = discGrad;
+          context.fill();
+
+          // Semillas doradas
+          const seedCount = this.isMini ? 16 : 36;
+          const goldenAngle = 2.39996;
+          for (let s = 1; s <= seedCount; s++) {
+            const r = Math.sqrt(s / seedCount) * (discRadius - 2.5);
+            const theta = s * goldenAngle;
+            context.beginPath();
+            context.arc(Math.cos(theta) * r, Math.sin(theta) * r, this.isMini ? 0.9 : 1.3, 0, Math.PI * 2);
+            context.fillStyle = s % 2 === 0 ? '#ca8a04' : '#eab308';
+            context.fill();
+          }
+
+          context.restore();
+        }
+      }
+    }
+
+    // Partículas de polen ambiental
+    const pollenParticles = [];
+    for (let p = 0; p < 60; p++) {
+      pollenParticles.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        radius: Math.random() * 2.2 + 0.8,
+        speedY: Math.random() * 0.8 + 0.3,
+        speedX: (Math.random() - 0.5) * 0.4,
+        alpha: Math.random() * 0.75 + 0.25,
+        pulseSpeed: Math.random() * 0.02 + 0.015
+      });
+    }
+
+    // Chispas interactivas al tocar
+    const sparksList = [];
+    function spawnSparks(x, y) {
+      for (let i = 0; i < 14; i++) {
+        const ang = Math.random() * Math.PI * 2;
+        const vel = Math.random() * 4.5 + 1.2;
+        sparksList.push({
+          x, y,
+          vx: Math.cos(ang) * vel,
+          vy: Math.sin(ang) * vel - 0.5,
+          alpha: 1,
+          size: Math.random() * 3.5 + 1.5,
+          color: Math.random() > 0.3 ? '#fef08a' : '#ffffff',
+          decay: Math.random() * 0.03 + 0.02
+        });
+      }
+    }
+
+    let flowersList = [];
+    let isGardenGrowing = false;
+
+    function buildGarden() {
+      flowersList = [];
+      const count = Math.max(3, Math.min(7, Math.floor(canvasW / 200)));
+      const spacing = canvasW / (count + 1);
+
+      for (let i = 1; i <= count; i++) {
+        const x = spacing * i + (Math.random() - 0.5) * 35;
+        const targetH = canvasH * (0.36 + Math.random() * 0.18);
+        const scale = 0.88 + Math.random() * 0.32;
+        const offset = i * 1.35;
+        flowersList.push(new SunflowerEntity(x, targetH, scale, offset));
+      }
+    }
+
+    function renderCanvasFrame(time) {
+      ctx.clearRect(0, 0, canvasW, canvasH);
+
+      // Polen
+      for (let i = 0; i < pollenParticles.length; i++) {
+        const p = pollenParticles[i];
+        p.y -= p.speedY;
+        p.x += p.speedX;
+        p.alpha += p.pulseSpeed;
+
+        if (p.alpha > 0.95 || p.alpha < 0.2) p.pulseSpeed = -p.pulseSpeed;
+        if (p.y < -15) {
+          p.y = canvasH + 15;
+          p.x = Math.random() * canvasW;
+        }
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 235, 120, ${p.alpha})`;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = '#facc15';
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Chispas
+      for (let s = sparksList.length - 1; s >= 0; s--) {
+        const sp = sparksList[s];
+        sp.x += sp.vx;
+        sp.y += sp.vy;
+        sp.vy += 0.08;
+        sp.alpha -= sp.decay;
+
+        if (sp.alpha <= 0) {
+          sparksList.splice(s, 1);
+          continue;
+        }
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+        ctx.fillStyle = sp.color;
+        ctx.globalAlpha = Math.max(0, sp.alpha);
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = '#facc15';
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Flores
+      if (isGardenGrowing) {
+        for (let f = flowersList.length - 1; f >= 0; f--) {
+          const fl = flowersList[f];
+          fl.update(time);
+          fl.draw(ctx);
+          if (fl.isDead) flowersList.splice(f, 1);
+        }
+      }
+
+      requestAnimationFrame(renderCanvasFrame);
+    }
+    requestAnimationFrame(renderCanvasFrame);
+
+    /* STREAMING_CHUNK:Rendering the 3D Galaxy carousel cards, dots, and rotation logic... -->
+    /* ==========================================================================
+       5. GESTOR DE LA GALAXIA DE RECUERDOS (3D + SELECCIÓN DIRECTA)
+       ========================================================================== */
+    const carouselRing = document.getElementById('carouselRing');
+    const memoryDotsContainer = document.getElementById('memoryDotsContainer');
+    const prevMemoryBtn = document.getElementById('prevMemoryBtn');
+    const nextMemoryBtn = document.getElementById('nextMemoryBtn');
+
+    function calculateRadius() {
+      const w = window.innerWidth;
+      if (w < 640) return 230;
+      if (w < 1024) return 300;
+      return 360;
+    }
+
+    function renderGalaxyCards() {
+      carouselRing.innerHTML = '';
+      memoryDotsContainer.innerHTML = '';
+      const count = MEMORIES_DATA.length;
+      if (count === 0) return;
+
+      const activeIndex = APP_STATE.currentIndex;
+      const mem = MEMORIES_DATA[activeIndex];
+      if (!mem) return;
+
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.setAttribute('aria-label', `Abrir recuerdo: ${mem.title}`);
+      card.className = 'polaroid-card memory-card-static flex flex-col justify-between active-card';
+      card.innerHTML = `
+        <div class="tape-accent"></div>
+        <div>
+          <div class="w-full h-44 rounded-lg overflow-hidden bg-slate-900 mb-2 relative border border-black/10">
+            <img src="${mem.image}" alt="${mem.title}" width="400" height="300" decoding="async" class="w-full h-full object-cover pointer-events-none" />
+            <span class="absolute bottom-1.5 right-1.5 bg-black/70 backdrop-blur-sm text-yellow-300 text-[10px] font-bold px-2 py-0.5 rounded-full">
+              ✦ ${activeIndex + 1}
+            </span>
+          </div>
+          <div class="text-center">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-amber-600 block">${mem.date}</span>
+            <h4 class="font-serif-title text-base font-bold text-stone-900 leading-snug truncate">${mem.title}</h4>
+          </div>
+        </div>
+        <div class="pt-1.5 border-t border-amber-200/70 text-center">
+          <p class="font-handwritten text-lg text-stone-700 leading-none truncate">"${mem.note}"</p>
+        </div>
+      `;
+
+      const cardImage = card.querySelector('img');
+      cardImage.addEventListener('error', () => {
+        cardImage.hidden = true;
+        cardImage.parentElement.classList.add('image-error');
+      });
+
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openDetailModal(activeIndex);
+      });
+
+      carouselRing.appendChild(card);
+
+      MEMORIES_DATA.forEach((memory, index) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = `w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${index === activeIndex ? 'bg-yellow-400 scale-125 shadow-[0_0_8px_#facc15]' : 'bg-yellow-400/40 hover:bg-yellow-300'}`;
+        dot.title = `Ver recuerdo: ${memory.title}`;
+        dot.setAttribute('aria-label', `Seleccionar recuerdo: ${memory.title}`);
+        dot.addEventListener('click', (e) => {
+          e.stopPropagation();
+          goToMemoryIndex(index);
+        });
+        memoryDotsContainer.appendChild(dot);
+      });
+    }
+
+    function updateRingRotation() {
+      renderGalaxyCards();
+    }
+
+    function goToMemoryIndex(index) {
+      const count = MEMORIES_DATA.length;
+      if (count === 0) return;
+      APP_STATE.currentIndex = (index + count) % count;
+      updateRingRotation();
+    }
+
+    // Botones de navegación explícita anterior / siguiente
+    prevMemoryBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      goToMemoryIndex(APP_STATE.currentIndex - 1);
+    });
+
+    nextMemoryBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      goToMemoryIndex(APP_STATE.currentIndex + 1);
+    });
+
+    // Soporte táctil y de arrastre con detección de intención (swipe vs click)
+    let touchStartX = 0;
+    let touchMoved = false;
+    const galaxyScene = document.getElementById('galaxyScene');
+
+    galaxyScene.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchMoved = false;
+    }, { passive: true });
+
+    galaxyScene.addEventListener('touchmove', (e) => {
+      const deltaX = e.touches[0].clientX - touchStartX;
+      if (Math.abs(deltaX) > 10) touchMoved = true;
+    }, { passive: true });
+
+    galaxyScene.addEventListener('touchend', (e) => {
+      if (!touchMoved) return;
+      const deltaX = e.changedTouches[0].clientX - touchStartX;
+      if (deltaX > 45) {
+        goToMemoryIndex(APP_STATE.currentIndex - 1);
+      } else if (deltaX < -45) {
+        goToMemoryIndex(APP_STATE.currentIndex + 1);
+      }
+    });
+
+    // Rotación automática suave opcional
+    let autoRotateInterval = setInterval(() => {
+      if (APP_STATE.view === 'GALAXY' && APP_STATE.isAutoRotating) {
+        goToMemoryIndex(APP_STATE.currentIndex + 1);
+      }
+    }, 4500);
+
+    const autoRotateToggleBtn = document.getElementById('autoRotateToggleBtn');
+    const autoRotateIcon = document.getElementById('autoRotateIcon');
+    const autoRotateText = document.getElementById('autoRotateText');
+
+    autoRotateToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      APP_STATE.isAutoRotating = !APP_STATE.isAutoRotating;
+      autoRotateIcon.textContent = APP_STATE.isAutoRotating ? '⏸️' : '▶️';
+      autoRotateText.textContent = APP_STATE.isAutoRotating ? 'Pausar Giro' : 'Girar Auto';
+    });
+
+    window.addEventListener('resize', () => {
+      if (APP_STATE.view === 'GALAXY') renderGalaxyCards();
+    });
+
+    /* STREAMING_CHUNK:Binding transitions and main screen navigation handlers... -->
+    /* ==========================================================================
+       6. TRANSICIONES ENTRE PANTALLAS (WELCOME -> JARDÍN -> GALAXIA)
+       ========================================================================== */
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    const startExperienceBtn = document.getElementById('startExperienceBtn');
+    const dedicationSection = document.getElementById('dedicationSection');
+    const memoryGalaxySection = document.getElementById('memoryGalaxySection');
+    const viewGalaxyBtn = document.getElementById('viewGalaxyBtn');
+    const backToGardenBtn = document.getElementById('backToGardenBtn');
+    const galaxyBadge = document.getElementById('galaxyBadge');
+    const restartGardenBtn = document.getElementById('restartGardenBtn');
+    const soundToggleBtn = document.getElementById('soundToggleBtn');
+    const soundEqBars = document.getElementById('soundEqBars');
+    const openEditModalBtn = document.getElementById('openEditModalBtn');
+
+    // 1. ABRIR REGALO GALÁCTICO
+    startExperienceBtn.addEventListener('click', async () => {
+      // La interacción del usuario permite iniciar la pista local.
+      const isPlaying = await musicBox.start();
+      APP_STATE.isAudioPlaying = isPlaying;
+      soundEqBars.classList.toggle('paused', !isPlaying);
+      soundToggleBtn.setAttribute('aria-pressed', String(isPlaying));
+
+      // Ocultar bienvenida
+      welcomeScreen.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+      setTimeout(() => welcomeScreen.classList.add('hidden'), 500);
+
+      // Mostrar barra de herramientas
+      soundToggleBtn.classList.remove('hidden');
+      openEditModalBtn.classList.remove('hidden');
+
+      // Mostrar dedicatoria
+      setTimeout(() => {
+        dedicationSection.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-8');
+        dedicationSection.classList.add('opacity-100', 'translate-y-0');
+      }, 300);
+
+      // Iniciar florecimiento del jardín
+      APP_STATE.view = 'GARDEN';
+      isGardenGrowing = true;
+      buildGarden();
+      spawnSparks(window.innerWidth / 2, window.innerHeight - 100);
+    });
+
+    // 2. VER GALAXIA DE RECUERDOS
+    viewGalaxyBtn.addEventListener('click', () => {
+      APP_STATE.view = 'GALAXY';
+
+      // Suavizar fondo del jardín
+      canvas.style.filter = 'blur(10px) brightness(0.6)';
+      canvas.style.opacity = '0.5';
+
+      // Ocultar dedicatoria
+      dedicationSection.classList.add('opacity-0', 'pointer-events-none', '-translate-y-8');
+      dedicationSection.classList.remove('opacity-100', 'translate-y-0');
+
+      // Mostrar Galaxia 3D
+      renderGalaxyCards();
+      memoryGalaxySection.classList.remove('opacity-0', 'pointer-events-none');
+      memoryGalaxySection.classList.add('opacity-100');
+
+      // Botón volver
+      backToGardenBtn.classList.remove('hidden');
+      galaxyBadge.classList.remove('hidden');
+
+      spawnSparks(window.innerWidth / 2, window.innerHeight / 2);
+    });
+
+    // 3. VOLVER AL JARDÍN
+    backToGardenBtn.addEventListener('click', () => {
+      APP_STATE.view = 'GARDEN';
+
+      // Restaurar jardín
+      canvas.style.filter = 'none';
+      canvas.style.opacity = '1';
+
+      // Ocultar Galaxia
+      memoryGalaxySection.classList.remove('opacity-100');
+      memoryGalaxySection.classList.add('opacity-0', 'pointer-events-none');
+
+      backToGardenBtn.classList.add('hidden');
+      galaxyBadge.classList.add('hidden');
+
+      // Restaurar Dedicatoria
+      dedicationSection.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-8');
+      dedicationSection.classList.add('opacity-100', 'translate-y-0');
+    });
+
+    // 4. REINICIAR FLORECIMIENTO
+    restartGardenBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      buildGarden();
+      spawnSparks(window.innerWidth / 2, window.innerHeight - 80);
+    });
+
+    // 5. CONTROL DE AUDIO
+    soundToggleBtn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const isPlaying = await musicBox.toggle();
+      APP_STATE.isAudioPlaying = isPlaying;
+      soundEqBars.classList.toggle('paused', !isPlaying);
+      soundToggleBtn.setAttribute('aria-pressed', String(isPlaying));
+    });
+
+    // Tocar el lienzo para sembrar flores y chispas
+    window.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('button') || e.target.closest('input') || e.target.closest('textarea') || e.target.closest('.polaroid-card') || e.target.closest('.glass-panel')) {
+        return;
+      }
+
+      spawnSparks(e.clientX, e.clientY);
+
+      if (APP_STATE.view === 'GARDEN' && isGardenGrowing) {
+        const mini = new SunflowerEntity(
+          e.clientX,
+          Math.random() * 50 + 35,
+          Math.random() * 0.35 + 0.65,
+          Math.random() * 5,
+          true,
+          e.clientY
+        );
+        flowersList.push(mini);
+      }
+    });
+
+    /* STREAMING_CHUNK:Implementing modal dialog handlers for detail, adding memories, and custom dedication... -->
+    /* ==========================================================================
+       7. GESTIÓN DE MODALES DE DETALLE, CREACIÓN Y PERSONALIZACIÓN
+       ========================================================================== */
+    // Helper para abrir/cerrar modales suavemente
+    function showModal(el) {
+      el.classList.remove('hidden');
+      requestAnimationFrame(() => el.classList.remove('opacity-0'));
+    }
+    function hideModal(el) {
+      el.classList.add('opacity-0');
+      setTimeout(() => el.classList.add('hidden'), 300);
+    }
+
+    // MODAL DETALLE
+    const memoryDetailModal = document.getElementById('memoryDetailModal');
+    const closeDetailModalBtn = document.getElementById('closeDetailModalBtn');
+    const closeDetailOkBtn = document.getElementById('closeDetailOkBtn');
+    const modalMemoryDate = document.getElementById('modalMemoryDate');
+    const modalMemoryTitle = document.getElementById('modalMemoryTitle');
+    const modalMemoryImg = document.getElementById('modalMemoryImg');
+    const modalMemoryNote = document.getElementById('modalMemoryNote');
+
+    function openDetailModal(index) {
+      APP_STATE.currentModalIndex = index;
+      const mem = MEMORIES_DATA[index];
+      if (!mem) return;
+
+      modalMemoryDate.textContent = `✦ ${mem.date} ✦`;
+      modalMemoryTitle.textContent = mem.title;
+      modalMemoryImg.src = mem.image;
+      modalMemoryNote.textContent = `"${mem.note}"`;
+
+      showModal(memoryDetailModal);
+    }
+
+    closeDetailModalBtn.addEventListener('click', () => hideModal(memoryDetailModal));
+    closeDetailOkBtn.addEventListener('click', () => hideModal(memoryDetailModal));
+
+    // MODAL EDITAR DEDICATORIA
+    const editDedicationModal = document.getElementById('editDedicationModal');
+    const closeEditModalBtn = document.getElementById('closeEditModalBtn');
+    const closeEditModalCross = document.getElementById('closeEditModalCross');
+    const saveDedicationBtn = document.getElementById('saveDedicationBtn');
+    const inputRecipient = document.getElementById('inputRecipient');
+    const inputTitle = document.getElementById('inputTitle');
+    const inputPoem = document.getElementById('inputPoem');
+
+    const cardRecipient = document.getElementById('cardRecipient');
+    const cardTitle = document.getElementById('cardTitle');
+    const cardPoem = document.getElementById('cardPoem');
+
+    openEditModalBtn.addEventListener('click', () => {
+      inputRecipient.value = cardRecipient.textContent.replace(/✦/g, '').replace('Para:', '').trim();
+      inputTitle.value = cardTitle.textContent.trim();
+      inputPoem.value = cardPoem.innerHTML.replace(/<br\s*[\/]?>/gi, '\n').replace(/✨/g, '').trim();
+      showModal(editDedicationModal);
+    });
+
+    closeEditModalBtn.addEventListener('click', () => hideModal(editDedicationModal));
+    closeEditModalCross.addEventListener('click', () => hideModal(editDedicationModal));
+
+    saveDedicationBtn.addEventListener('click', () => {
+      const recipient = inputRecipient.value.trim() || 'Mi Persona Favorita 💛';
+      const title = inputTitle.value.trim() || '¡Feliz día de las flores amarillas!';
+      const poem = inputPoem.value.trim() || 'Amarillas como el sol radiante,\ntú iluminas mi universo cada día.';
+
+      cardRecipient.textContent = `✦ Para: ${recipient} ✦`;
+      cardTitle.textContent = title;
+      cardPoem.innerHTML = poem.replace(/\n/g, '<br />') + ' ✨';
+
+      hideModal(editDedicationModal);
+      spawnSparks(window.innerWidth / 2, 120);
+    });
+  </script>
+</body>
+</html>
