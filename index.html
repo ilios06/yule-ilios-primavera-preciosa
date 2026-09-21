@@ -325,7 +325,8 @@
       height: 4px !important;
     }
 
-    @media (max-height: 700px) {
+    /* Mantiene la composición compacta exclusivamente en teléfonos bajos. */
+    @media (max-width: 767px) and (max-height: 700px) {
       #memoryGalaxySection {
         justify-content: flex-start;
         gap: 0.6rem;
@@ -369,6 +370,81 @@
 
       .modal-memory-image {
         max-height: 56vh;
+      }
+    }
+
+    /* Composición de escritorio: el recuerdo y la navegación aprovechan el ancho disponible. */
+    @media (min-width: 768px) and (min-height: 701px) {
+      #memoryGalaxySection {
+        padding: 5rem 3rem 2rem;
+      }
+
+      #memoryGalaxySection .galaxy-3d-scene {
+        height: min(54vh, 480px);
+        min-height: 360px;
+      }
+
+      #memoryGalaxySection .carousel-ring {
+        width: min(32vw, 360px);
+        height: min(50vh, 440px);
+      }
+
+      #memoryGalaxySection .polaroid-card {
+        width: min(32vw, 360px);
+        height: min(50vh, 430px);
+        padding: 14px 14px 18px;
+      }
+
+      #memoryGalaxySection .polaroid-card .h-44 {
+        height: min(29vh, 250px);
+      }
+
+      #prevMemoryBtn {
+        left: calc(50% - 300px);
+      }
+
+      #nextMemoryBtn {
+        right: calc(50% - 300px);
+      }
+    }
+
+    /* Escritorios con poca altura (por ejemplo, ventanas divididas): compacto pero legible. */
+    @media (min-width: 768px) and (max-height: 700px) {
+      #memoryGalaxySection {
+        padding: 3.75rem 2.5rem 0.75rem;
+        justify-content: flex-start;
+        gap: 0.45rem;
+      }
+
+      #memoryGalaxySection .galaxy-3d-scene,
+      #memoryGalaxySection > .relative {
+        height: 285px;
+        min-height: 285px;
+        flex: 0 0 285px;
+        margin: 0;
+      }
+
+      #memoryGalaxySection .carousel-ring {
+        width: 270px;
+        height: 280px;
+      }
+
+      #memoryGalaxySection .polaroid-card {
+        width: 270px;
+        height: 270px;
+        padding: 10px 10px 13px;
+      }
+
+      #memoryGalaxySection .polaroid-card .h-44 {
+        height: 145px;
+      }
+
+      #prevMemoryBtn {
+        left: calc(50% - 250px);
+      }
+
+      #nextMemoryBtn {
+        right: calc(50% - 250px);
       }
     }
   </style>
@@ -454,6 +530,9 @@
 
     <p class="mt-4 text-xs text-yellow-100/70 tracking-wider">
       Haz clic para despertar la melodía celestial y el jardín estelar
+    </p>
+    <p id="audioAutoplayHint" role="status" aria-live="polite" class="hidden mt-2 text-xs text-yellow-100/70">
+      Tu navegador necesita un toque para activar la música.
     </p>
   </section>
 
@@ -662,7 +741,7 @@ tú iluminas mi universo cada día. ✨</textarea>
     </div>
   </div>
 
-  <audio id="backgroundMusic" preload="metadata" loop src="assets/audio/elgar-salut-d-amour.mp3"></audio>
+  <audio id="backgroundMusic" preload="auto" autoplay playsinline loop src="assets/audio/elgar-salut-d-amour.mp3"></audio>
 
   <script>
     /* ==========================================================================
@@ -849,6 +928,10 @@ tú iluminas mi universo cada día. ✨</textarea>
     const musicBox = {
       isPlaying: false,
       async start() {
+        if (!backgroundAudio.paused) {
+          this.isPlaying = true;
+          return true;
+        }
         try {
           await backgroundAudio.play();
           this.isPlaying = true;
@@ -1339,7 +1422,27 @@ tú iluminas mi universo cada día. ✨</textarea>
     const soundToggleBtn = document.getElementById('soundToggleBtn');
     const soundEqBars = document.getElementById('soundEqBars');
     const openEditModalBtn = document.getElementById('openEditModalBtn');
+    const audioAutoplayHint = document.getElementById('audioAutoplayHint');
     let dedicationRevealTimer = null;
+
+    function updateAudioUi(isPlaying) {
+      APP_STATE.isAudioPlaying = isPlaying;
+      soundEqBars.classList.toggle('paused', !isPlaying);
+      soundToggleBtn.setAttribute('aria-pressed', String(isPlaying));
+      if (isPlaying) {
+        soundToggleBtn.classList.remove('hidden');
+        audioAutoplayHint.classList.add('hidden');
+      }
+    }
+
+    function attemptAutoplay() {
+      void musicBox.start().then((isPlaying) => {
+        updateAudioUi(isPlaying);
+        if (!isPlaying) audioAutoplayHint.classList.remove('hidden');
+      });
+    }
+
+    window.addEventListener('load', attemptAutoplay, { once: true });
 
     // 1. ABRIR REGALO GALÁCTICO
     startExperienceBtn.addEventListener('click', (event) => {
@@ -1351,9 +1454,7 @@ tú iluminas mi universo cada día. ✨</textarea>
 
       // La pantalla debe abrirse aunque el navegador tarde en resolver audio.play().
       void musicBox.start().then((isPlaying) => {
-        APP_STATE.isAudioPlaying = isPlaying;
-        soundEqBars.classList.toggle('paused', !isPlaying);
-        soundToggleBtn.setAttribute('aria-pressed', String(isPlaying));
+        updateAudioUi(isPlaying);
       });
 
       // Ocultar bienvenida
@@ -1437,9 +1538,7 @@ tú iluminas mi universo cada día. ✨</textarea>
     soundToggleBtn.addEventListener('click', async (e) => {
       e.stopPropagation();
       const isPlaying = await musicBox.toggle();
-      APP_STATE.isAudioPlaying = isPlaying;
-      soundEqBars.classList.toggle('paused', !isPlaying);
-      soundToggleBtn.setAttribute('aria-pressed', String(isPlaying));
+      updateAudioUi(isPlaying);
     });
 
     // Tocar el lienzo para sembrar flores y chispas
