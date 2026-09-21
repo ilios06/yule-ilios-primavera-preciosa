@@ -138,8 +138,9 @@
         0 0 25px rgba(251, 192, 45, 0.6),
         0 4px 15px rgba(0, 0, 0, 0.4),
         inset 0 1px 2px rgba(255, 255, 255, 0.8);
-      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
       cursor: pointer;
+      touch-action: manipulation;
     }
 
     .btn-golden-glow:hover {
@@ -232,6 +233,50 @@
       left: auto;
       top: auto;
       transform: none !important;
+      background: linear-gradient(150deg, rgba(18, 24, 38, 0.98) 0%, rgba(7, 10, 18, 0.98) 100%);
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    .memory-card-static .memory-date,
+    .memory-card-static .memory-title,
+    .memory-card-static .memory-note {
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    .memory-card-static .memory-date {
+      color: #fde68a;
+    }
+
+    .memory-card-static .memory-note {
+      display: block;
+      white-space: normal;
+      overflow: hidden;
+      text-overflow: clip;
+      line-height: 1.2;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .modal-memory-frame {
+      width: 100%;
+      min-height: 180px;
+      max-height: 68vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .modal-memory-image {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 68vh;
+      object-fit: contain;
     }
 
     .polaroid-card:hover {
@@ -317,6 +362,14 @@
       #memoryGalaxySection .polaroid-card .text-lg {
         font-size: 1rem;
       }
+
+      .modal-memory-frame {
+        max-height: 56vh;
+      }
+
+      .modal-memory-image {
+        max-height: 56vh;
+      }
     }
   </style>
 </head>
@@ -392,7 +445,7 @@
       Para iluminar tu universo
     </h2>
 
-    <button id="startExperienceBtn" 
+    <button id="startExperienceBtn" type="button" aria-label="Abrir Regalo Galáctico" 
             class="btn-golden-glow px-8 sm:px-12 py-4 sm:py-5 rounded-full font-black text-lg sm:text-xl tracking-wide flex items-center gap-3 cursor-pointer shadow-2xl">
       <span class="text-2xl animate-spin" style="animation-duration: 8s;">🌻</span>
       <span>Abrir Regalo Galáctico</span>
@@ -530,7 +583,7 @@
 
   <!-- MODAL 1: DETALLE DEL RECUERDO AMPLIADO -->
   <div id="memoryDetailModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md p-4 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-    <div class="glass-panel rounded-3xl p-5 sm:p-7 max-w-lg w-full border border-yellow-400/50 text-center shadow-2xl relative flex flex-col items-center">
+    <div role="dialog" aria-modal="true" aria-labelledby="modalMemoryTitle" class="glass-panel rounded-3xl p-5 sm:p-7 max-w-lg w-full max-h-[calc(100vh-2rem)] overflow-y-auto border border-yellow-400/50 text-center shadow-2xl relative flex flex-col items-center">
       
       <!-- Botón de Cerrar Modal -->
       <button id="closeDetailModalBtn" aria-label="Cerrar detalle del recuerdo" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-yellow-400/20 text-yellow-200 hover:bg-yellow-400/40 hover:text-white flex items-center justify-center text-base font-bold transition-all cursor-pointer">
@@ -543,8 +596,8 @@
       </span>
 
       <!-- Imagen -->
-      <div class="w-full h-60 sm:h-72 rounded-2xl overflow-hidden mb-3.5 border border-yellow-400/30 shadow-inner bg-slate-950 flex items-center justify-center">
-      <img id="modalMemoryImg" src="" alt="Recuerdo" width="640" height="480" class="w-full h-full object-cover" />
+      <div class="modal-memory-frame rounded-2xl mb-3.5 border border-yellow-400/30 shadow-inner bg-slate-950">
+      <img id="modalMemoryImg" src="" alt="Recuerdo" width="640" height="480" class="modal-memory-image" />
       </div>
 
       <!-- Título -->
@@ -1166,12 +1219,12 @@ tú iluminas mi universo cada día. ✨</textarea>
             </span>
           </div>
           <div class="text-center">
-            <span class="text-[11px] font-bold uppercase tracking-wider text-amber-600 block">${mem.date}</span>
-            <h4 class="font-serif-title text-base font-bold text-stone-900 leading-snug truncate">${mem.title}</h4>
+            <span class="memory-date text-[11px] font-bold uppercase tracking-wider block">${mem.date}</span>
+            <h4 class="memory-title font-serif-title text-base font-bold leading-snug">${mem.title}</h4>
           </div>
         </div>
         <div class="pt-1.5 border-t border-amber-200/70 text-center">
-          <p class="font-handwritten text-lg text-stone-700 leading-none truncate">"${mem.note}"</p>
+          <p class="memory-note font-handwritten text-lg leading-none">"${mem.note}"</p>
         </div>
       `;
 
@@ -1288,12 +1341,19 @@ tú iluminas mi universo cada día. ✨</textarea>
     const openEditModalBtn = document.getElementById('openEditModalBtn');
 
     // 1. ABRIR REGALO GALÁCTICO
-    startExperienceBtn.addEventListener('click', async () => {
-      // La interacción del usuario permite iniciar la pista local.
-      const isPlaying = await musicBox.start();
-      APP_STATE.isAudioPlaying = isPlaying;
-      soundEqBars.classList.toggle('paused', !isPlaying);
-      soundToggleBtn.setAttribute('aria-pressed', String(isPlaying));
+    startExperienceBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (APP_STATE.view !== 'WELCOME') return;
+
+      startExperienceBtn.disabled = true;
+      startExperienceBtn.setAttribute('aria-busy', 'true');
+
+      // La pantalla debe abrirse aunque el navegador tarde en resolver audio.play().
+      void musicBox.start().then((isPlaying) => {
+        APP_STATE.isAudioPlaying = isPlaying;
+        soundEqBars.classList.toggle('paused', !isPlaying);
+        soundToggleBtn.setAttribute('aria-pressed', String(isPlaying));
+      });
 
       // Ocultar bienvenida
       welcomeScreen.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
