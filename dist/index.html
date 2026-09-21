@@ -143,6 +143,22 @@
       touch-action: manipulation;
     }
 
+    /* El regalo permanece por encima de las capas decorativas del fondo. */
+    #startExperienceBtn {
+      position: relative;
+      z-index: 1;
+      pointer-events: auto;
+    }
+
+    /* `pointer-events: none` no bloquea a hijos que declaran `auto`.
+       Mientras una vista está oculta, sus controles no pueden tapar el regalo. */
+    #dedicationSection.pointer-events-none,
+    #dedicationSection.pointer-events-none *,
+    #memoryGalaxySection.pointer-events-none,
+    #memoryGalaxySection.pointer-events-none * {
+      pointer-events: none !important;
+    }
+
     .btn-golden-glow:hover {
       transform: translateY(-2px) scale(1.03);
       box-shadow: 
@@ -1453,8 +1469,9 @@ tú iluminas mi universo cada día. ✨</textarea>
       event.preventDefault();
       if (APP_STATE.view !== 'WELCOME') return;
 
-      startExperienceBtn.disabled = true;
-      startExperienceBtn.setAttribute('aria-busy', 'true');
+      // El estado de vista impide una doble apertura. No deshabilitamos el
+      // botón: algunos navegadores restauran ese atributo desde su caché.
+      APP_STATE.view = 'GARDEN';
 
       // La pantalla debe abrirse aunque el navegador tarde en resolver audio.play().
       void musicBox.start().then((isPlaying) => {
@@ -1477,10 +1494,16 @@ tú iluminas mi universo cada día. ✨</textarea>
       }, 300);
 
       // Iniciar florecimiento del jardín
-      APP_STATE.view = 'GARDEN';
       isGardenGrowing = true;
       buildGarden();
       spawnSparks(window.innerWidth / 2, window.innerHeight - 100);
+    });
+
+    // Protege recargas y navegación hacia atrás/adelante en navegadores que
+    // restauran controles de formulario desde la caché de la página.
+    window.addEventListener('pageshow', () => {
+      startExperienceBtn.disabled = false;
+      startExperienceBtn.removeAttribute('aria-busy');
     });
 
     // 2. VER GALAXIA DE RECUERDOS
