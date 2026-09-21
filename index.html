@@ -1442,7 +1442,11 @@ tú iluminas mi universo cada día. ✨</textarea>
       });
     }
 
-    window.addEventListener('load', attemptAutoplay, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', attemptAutoplay, { once: true });
+    } else {
+      attemptAutoplay();
+    }
 
     // 1. ABRIR REGALO GALÁCTICO
     startExperienceBtn.addEventListener('click', (event) => {
